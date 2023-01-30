@@ -28,6 +28,6 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <toolWindow factoryClass="online.dictionary.OnlineDctionaryFactory" id="在线词典" icon="AllIcons.Actions.Find" anchor="right" secondary="false"></toolWindow>
     </extensions>
 </idea-plugin>
