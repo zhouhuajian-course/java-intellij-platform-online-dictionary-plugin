@@ -19,11 +19,16 @@ intellij {
     plugins.set(listOf(/* Plugin Dependencies */))
 }
 
+// encoding
+// The character encoding to be used when reading source files. Defaults to null, in which case the platform default encoding will be used.
+// GBK
+
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
         sourceCompatibility = "11"
         targetCompatibility = "11"
+        options.encoding = "UTF-8"
     }
 
     patchPluginXml {
