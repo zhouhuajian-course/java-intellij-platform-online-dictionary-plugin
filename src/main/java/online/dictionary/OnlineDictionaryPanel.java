@@ -36,12 +36,21 @@ public class OnlineDictionaryPanel extends JPanel {
                 String word = wordTextField.getText();
                 String result;
                 try {
+                    if (word.isBlank()) {
+                        throw new IllegalArgumentException();
+                    }
                     Document document = Jsoup.connect("https://cn.bing.com/dict/search?q=" + word).get();
                     String part1 = document.select("div.qdef div.hd_area").first().toString();
                     String part2 = document.select("div.qdef ul").first().toString();
                     result = part1 + part2;
+                } catch (IllegalArgumentException ex) {
+                    result = "<font color=red>请输入要查询的单词。</font>";
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                    // 连接超时 404 500
+                    // throw new RuntimeException(ex);
+                    result = "<font color=red>网络异常，请稍后再试。</font>";
+                } catch (NullPointerException ex) {
+                    result = "<font color=red>数据异常，请输入正确的单词。</font>";
                 }
                 resultLabel.setText("<html>" + result + "</html>");
             }
